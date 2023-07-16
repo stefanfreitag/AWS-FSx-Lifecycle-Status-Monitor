@@ -6,13 +6,18 @@ quickly detect and take action if your file systems aren’t healthy.
 
 This solution is based on this [post](https://aws.amazon.com/de/blogs/storage/monitoring-the-health-of-amazon-fsx-file-systems-using-amazon-eventbridge-and-aws-lambda/) in the AWS Storage Blog.
 
-
 ## How to run
+
+### Tests
+
+```shell
+yarn test
+```
 
 ### Integration tests
 
 ```shell
-yarn integ-runner --update-on-failed --parallel-regions eu-central-1 
+yarn integ-runner --directory ./integ-tests  --update-on-failed --parallel-regions eu-central-1
 ```
 
 ## Links

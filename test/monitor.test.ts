@@ -9,14 +9,14 @@ describe('SNS Topic Configuration', () => {
     const app = new cdk.App();
 
     stack = new cdk.Stack(app, 'stack', {});
-    new FsxLifecycleStatusMonitor(stack, 'monitor', );
+    new FsxLifecycleStatusMonitor(stack, 'monitor' );
   });
 
   test('Fifo is disabled', () => {
     cdk.assertions.Template.fromStack(stack).hasResourceProperties(
       'AWS::SNS::Topic',
       {
-        DisplayName: "fsx-lifecycle-monitor",
+        DisplayName: 'fsx-lifecycle-monitor',
       },
     );
   });

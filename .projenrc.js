@@ -10,27 +10,27 @@ const project = new awscdk.AwsCdkConstructLibrary({
   name: 'aws_fsx_lifecycle_status_monitor',
   repositoryUrl: 'https://github.com/stefan.freitag/aws_fsx_lifecycle_status_monitor.git',
   keywords: ['aws', 'fsx', 'lifecycle', 'monitor'],
-  tsconfigDev:{
+  tsconfigDev: {
     compilerOptions: {
-      ignoreDeprecations: "5.0"
-    }
+      ignoreDeprecations: '5.0',
+    },
   },
-  tsconfig:{
+  tsconfig: {
     compilerOptions: {
-      ignoreDeprecations: "5.0"
-    }
+      ignoreDeprecations: '5.0',
+    },
   },
-  devDeps:[
+  devDeps: [
     '@aws-cdk/integ-tests-alpha@2.87.0-alpha.0',
     '@aws-cdk/integ-runner@2.87.0-alpha.0',
-    'ts-node'
+    'ts-node',
   ],
   depsUpgradeOptions: {
     workflowOptions: {
       schedule: UpgradeDependenciesSchedule.MONTHLY,
     },
   },
-  stability: Stability.EXPERIMENTAL
+  stability: Stability.EXPERIMENTAL,
 });
 
 const commonExcludes = ['.history/', '.venv', '.idea'];
