@@ -133,6 +133,7 @@ Any object.
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.fn">fn</a></code> | <code>aws-cdk-lib.aws_lambda.Function</code> | *No description.* |
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | *No description.* |
+| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | *No description.* |
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.topic">topic</a></code> | <code>aws-cdk-lib.aws_sns.Topic</code> | *No description.* |
 
 ---
@@ -166,6 +167,16 @@ public readonly policy: Policy;
 ```
 
 - *Type:* aws-cdk-lib.aws_iam.Policy
+
+---
+
+##### `rule`<sup>Required</sup> <a name="rule" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.rule"></a>
+
+```typescript
+public readonly rule: Rule;
+```
+
+- *Type:* aws-cdk-lib.aws_events.Rule
 
 ---
 

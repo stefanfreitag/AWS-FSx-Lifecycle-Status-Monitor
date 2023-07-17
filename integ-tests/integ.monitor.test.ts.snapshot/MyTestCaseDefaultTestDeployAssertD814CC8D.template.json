@@ -1,0 +1,183 @@
+{
+ "Resources": {
+  "AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d": {
+   "Type": "Custom::DeployAssert@SdkCallSNSgetTopicAttributes",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "SingletonFunction1488541a7b23466481b69b4408076b81HandlerCD40AE9F",
+      "Arn"
+     ]
+    },
+    "service": "SNS",
+    "api": "getTopicAttributes",
+    "expected": "{\"$ObjectLike\":{\"Attributes\":{\"DisplayName\":\"fsx-lifecycle-monitor\"}}}",
+    "parameters": {
+     "TopicArn": {
+      "Fn::ImportValue": "monitor-stack:ExportsOutputRefmonitorfsxhealthsnstopic74C15B1B4A2D2981"
+     }
+    },
+    "flattenResponse": "false",
+    "salt": "1689612365941"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "SingletonFunction1488541a7b23466481b69b4408076b81Role37ABCE73": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ],
+    "Policies": [
+     {
+      "PolicyName": "Inline",
+      "PolicyDocument": {
+       "Version": "2012-10-17",
+       "Statement": [
+        {
+         "Action": [
+          "sns:GetTopicAttributes"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          "*"
+         ]
+        },
+        {
+         "Action": [
+          "eventbridge:DescribeRule"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          "*"
+         ]
+        },
+        {
+         "Effect": "Allow",
+         "Action": [
+          "events:DescribeRule"
+         ],
+         "Resource": [
+          {
+           "Fn::ImportValue": "monitor-stack:ExportsOutputFnGetAttmonitorrule99C4CAB4ArnB28B8588"
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "SingletonFunction1488541a7b23466481b69b4408076b81HandlerCD40AE9F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Runtime": "nodejs18.x",
+    "Code": {
+     "S3Bucket": {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+     },
+     "S3Key": "a5c310b46637b9f23d0cd48c7ae357074563c375a3a49f87ce643821594ca2b4.zip"
+    },
+    "Timeout": 120,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "SingletonFunction1488541a7b23466481b69b4408076b81Role37ABCE73",
+      "Arn"
+     ]
+    }
+   }
+  },
+  "AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658": {
+   "Type": "Custom::DeployAssert@SdkCallEventBridgedescribeRule",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "SingletonFunction1488541a7b23466481b69b4408076b81HandlerCD40AE9F",
+      "Arn"
+     ]
+    },
+    "service": "EventBridge",
+    "api": "describeRule",
+    "expected": "{\"$ObjectLike\":{\"Description\":\"Trigger the FSx health check every 10 minutes\",\"ScheduleExpression\":\"cron(0/10 * * * ? *)\",\"Name\":\"fsx-health-trigger\",\"State\":\"ENABLED\"}}",
+    "parameters": {
+     "Name": {
+      "Fn::ImportValue": "monitor-stack:ExportsOutputRefmonitorrule99C4CAB40309C047"
+     }
+    },
+    "flattenResponse": "false",
+    "salt": "1689612365941"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  }
+ },
+ "Outputs": {
+  "AssertionResultsAwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d",
+     "assertion"
+    ]
+   }
+  },
+  "AssertionResultsAwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658",
+     "assertion"
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
