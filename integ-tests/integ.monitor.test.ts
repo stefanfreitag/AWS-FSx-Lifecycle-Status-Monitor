@@ -38,4 +38,22 @@ integ.assertions
     })
   );
 
+  const awsApiCall = integ.assertions
+  .awsApiCall("EventBridge", "describeRule", {
+    Name: stack.monitor.rule.ruleName,
+  })
+  .expect(
+    ExpectedResult.objectLike({
+      Description: "Trigger the FSx health check every 10 minutes",
+        ScheduleExpression: "cron(0/10 * * * ? *)",
+      Name: 'fsx-health-trigger',
+      State: 'ENABLED',
+    })
+  );
+
+  awsApiCall.provider.addToRolePolicy({
+    Effect: 'Allow',
+    Action: ['events:DescribeRule'],
+    Resource: [stack.monitor.rule.ruleArn],
+  });
 app.synth();

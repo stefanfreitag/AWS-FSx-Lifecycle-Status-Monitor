@@ -1,0 +1,666 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "monitor-stack": {
+        "id": "monitor-stack",
+        "path": "monitor-stack",
+        "children": {
+          "monitor": {
+            "id": "monitor",
+            "path": "monitor-stack/monitor",
+            "children": {
+              "alias": {
+                "id": "alias",
+                "path": "monitor-stack/monitor/alias",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.87.0"
+                }
+              },
+              "fsx-health-sns-topic": {
+                "id": "fsx-health-sns-topic",
+                "path": "monitor-stack/monitor/fsx-health-sns-topic",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "monitor-stack/monitor/fsx-health-sns-topic/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SNS::Topic",
+                      "aws:cdk:cloudformation:props": {
+                        "displayName": "fsx-lifecycle-monitor",
+                        "kmsMasterKeyId": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "arn:",
+                              {
+                                "Ref": "AWS::Partition"
+                              },
+                              ":kms:",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              ":",
+                              {
+                                "Ref": "AWS::AccountId"
+                              },
+                              ":alias/aws/sns"
+                            ]
+                          ]
+                        },
+                        "topicName": "fsx-lifecycle-monitor"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_sns.CfnTopic",
+                      "version": "2.87.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_sns.Topic",
+                  "version": "2.87.0"
+                }
+              },
+              "policy": {
+                "id": "policy",
+                "path": "monitor-stack/monitor/policy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "monitor-stack/monitor/policy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "logs:CreateLogGroup",
+                                "logs:CreateLogStream",
+                                "logs:PutLogEvents"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:aws:logs:",
+                                    {
+                                      "Ref": "AWS::Region"
+                                    },
+                                    ":",
+                                    {
+                                      "Ref": "AWS::AccountId"
+                                    },
+                                    ":log-group:/aws/lambda/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": [
+                                "fsx:DescribeFileSystems",
+                                "sns:Publish"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": "*"
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "fsx-lambda-sns",
+                        "roles": [
+                          {
+                            "Ref": "monitorfsxlifecyclemonitorServiceRole29219093"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.87.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.87.0"
+                }
+              },
+              "fsx-lifecycle-monitor": {
+                "id": "fsx-lifecycle-monitor",
+                "path": "monitor-stack/monitor/fsx-lifecycle-monitor",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "monitor-stack/monitor/fsx-lifecycle-monitor/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "monitor-stack/monitor/fsx-lifecycle-monitor/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "monitor-stack/monitor/fsx-lifecycle-monitor/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              },
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/CloudWatchLambdaInsightsExecutionRolePolicy"
+                                  ]
+                                ]
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.87.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.87.0"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "monitor-stack/monitor/fsx-lifecycle-monitor/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "monitor-stack/monitor/fsx-lifecycle-monitor/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "monitor-stack/monitor/fsx-lifecycle-monitor/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.87.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.87.0"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "monitor-stack/monitor/fsx-lifecycle-monitor/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": {
+                            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                          },
+                          "s3Key": "d1c924824b9a5e2d92acd88a4313cfa2616b7625231e14409f8a5cae6be11742.zip"
+                        },
+                        "role": {
+                          "Fn::GetAtt": [
+                            "monitorfsxlifecyclemonitorServiceRole29219093",
+                            "Arn"
+                          ]
+                        },
+                        "architectures": [
+                          "x86_64"
+                        ],
+                        "environment": {
+                          "variables": {
+                            "LambdaSNSTopic": {
+                              "Ref": "monitorfsxhealthsnstopic74C15B1B"
+                            }
+                          }
+                        },
+                        "handler": "fsx-health.lambda_handler",
+                        "layers": [
+                          {
+                            "Fn::FindInMap": [
+                              "CloudwatchlambdainsightsversionMap",
+                              {
+                                "Ref": "AWS::Region"
+                              },
+                              "1x0x229x0xx86x64"
+                            ]
+                          }
+                        ],
+                        "runtime": "python3.10"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.87.0"
+                    }
+                  },
+                  "LambdaInsightsLayer": {
+                    "id": "LambdaInsightsLayer",
+                    "path": "monitor-stack/monitor/fsx-lifecycle-monitor/LambdaInsightsLayer",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.87.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "version": "2.87.0"
+                }
+              },
+              "rule": {
+                "id": "rule",
+                "path": "monitor-stack/monitor/rule",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "monitor-stack/monitor/rule/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Events::Rule",
+                      "aws:cdk:cloudformation:props": {
+                        "description": "Trigger the FSx health check every 10 minutes",
+                        "name": "fsx-health-trigger",
+                        "scheduleExpression": "cron(0/10 * * * ? *)",
+                        "state": "ENABLED",
+                        "targets": [
+                          {
+                            "id": "Target0",
+                            "arn": {
+                              "Fn::GetAtt": [
+                                "monitorfsxlifecyclemonitor692E6494",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_events.CfnRule",
+                      "version": "2.87.0"
+                    }
+                  },
+                  "AllowEventRulemonitorstackmonitorfsxlifecyclemonitor85E311F1": {
+                    "id": "AllowEventRulemonitorstackmonitorfsxlifecyclemonitor85E311F1",
+                    "path": "monitor-stack/monitor/rule/AllowEventRulemonitorstackmonitorfsxlifecyclemonitor85E311F1",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                      "aws:cdk:cloudformation:props": {
+                        "action": "lambda:InvokeFunction",
+                        "functionName": {
+                          "Fn::GetAtt": [
+                            "monitorfsxlifecyclemonitor692E6494",
+                            "Arn"
+                          ]
+                        },
+                        "principal": "events.amazonaws.com",
+                        "sourceArn": {
+                          "Fn::GetAtt": [
+                            "monitorrule99C4CAB4",
+                            "Arn"
+                          ]
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                      "version": "2.87.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_events.Rule",
+                  "version": "2.87.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
+            }
+          },
+          "Cloudwatch-lambda-insights-versionMap": {
+            "id": "Cloudwatch-lambda-insights-versionMap",
+            "path": "monitor-stack/Cloudwatch-lambda-insights-versionMap",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnMapping",
+              "version": "2.87.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "monitor-stack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "monitor-stack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.87.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "monitor-stack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.87.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "monitor-stack/Exports",
+            "children": {
+              "Output{\"Ref\":\"monitorfsxhealthsnstopic74C15B1B\"}": {
+                "id": "Output{\"Ref\":\"monitorfsxhealthsnstopic74C15B1B\"}",
+                "path": "monitor-stack/Exports/Output{\"Ref\":\"monitorfsxhealthsnstopic74C15B1B\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.87.0"
+                }
+              },
+              "Output{\"Fn::GetAtt\":[\"monitorrule99C4CAB4\",\"Arn\"]}": {
+                "id": "Output{\"Fn::GetAtt\":[\"monitorrule99C4CAB4\",\"Arn\"]}",
+                "path": "monitor-stack/Exports/Output{\"Fn::GetAtt\":[\"monitorrule99C4CAB4\",\"Arn\"]}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.87.0"
+                }
+              },
+              "Output{\"Ref\":\"monitorrule99C4CAB4\"}": {
+                "id": "Output{\"Ref\":\"monitorrule99C4CAB4\"}",
+                "path": "monitor-stack/Exports/Output{\"Ref\":\"monitorrule99C4CAB4\"}",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnOutput",
+                  "version": "2.87.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
+            }
+          },
+          "BootstrapVersion": {
+            "id": "BootstrapVersion",
+            "path": "monitor-stack/BootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnParameter",
+              "version": "2.87.0"
+            }
+          },
+          "CheckBootstrapVersion": {
+            "id": "CheckBootstrapVersion",
+            "path": "monitor-stack/CheckBootstrapVersion",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnRule",
+              "version": "2.87.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.87.0"
+        }
+      },
+      "MyTestCase": {
+        "id": "MyTestCase",
+        "path": "MyTestCase",
+        "children": {
+          "DefaultTest": {
+            "id": "DefaultTest",
+            "path": "MyTestCase/DefaultTest",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "MyTestCase/DefaultTest/Default",
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.0.5"
+                }
+              },
+              "DeployAssert": {
+                "id": "DeployAssert",
+                "path": "MyTestCase/DefaultTest/DeployAssert",
+                "children": {
+                  "AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d": {
+                    "id": "AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d",
+                    "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d",
+                    "children": {
+                      "SdkProvider": {
+                        "id": "SdkProvider",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d/SdkProvider",
+                        "children": {
+                          "AssertionsProvider": {
+                            "id": "AssertionsProvider",
+                            "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d/SdkProvider/AssertionsProvider",
+                            "constructInfo": {
+                              "fqn": "constructs.Construct",
+                              "version": "10.0.5"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                          "version": "2.87.0-alpha.0"
+                        }
+                      },
+                      "Default": {
+                        "id": "Default",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d/Default",
+                        "children": {
+                          "Default": {
+                            "id": "Default",
+                            "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d/Default/Default",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.87.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CustomResource",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "AssertionResults": {
+                        "id": "AssertionResults",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallSNSgetTopicAttributes530fbba5988fd559826d5e09acd7869d/AssertionResults",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnOutput",
+                          "version": "2.87.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
+                      "version": "2.87.0-alpha.0"
+                    }
+                  },
+                  "SingletonFunction1488541a7b23466481b69b4408076b81": {
+                    "id": "SingletonFunction1488541a7b23466481b69b4408076b81",
+                    "path": "MyTestCase/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81",
+                    "children": {
+                      "Staging": {
+                        "id": "Staging",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Staging",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "Role": {
+                        "id": "Role",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Role",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "Handler": {
+                        "id": "Handler",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/SingletonFunction1488541a7b23466481b69b4408076b81/Handler",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.87.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.0.5"
+                    }
+                  },
+                  "AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658": {
+                    "id": "AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658",
+                    "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658",
+                    "children": {
+                      "SdkProvider": {
+                        "id": "SdkProvider",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658/SdkProvider",
+                        "children": {
+                          "AssertionsProvider": {
+                            "id": "AssertionsProvider",
+                            "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658/SdkProvider/AssertionsProvider",
+                            "constructInfo": {
+                              "fqn": "constructs.Construct",
+                              "version": "10.0.5"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/integ-tests-alpha.AssertionsProvider",
+                          "version": "2.87.0-alpha.0"
+                        }
+                      },
+                      "Default": {
+                        "id": "Default",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658/Default",
+                        "children": {
+                          "Default": {
+                            "id": "Default",
+                            "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658/Default/Default",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.87.0"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CustomResource",
+                          "version": "2.87.0"
+                        }
+                      },
+                      "AssertionResults": {
+                        "id": "AssertionResults",
+                        "path": "MyTestCase/DefaultTest/DeployAssert/AwsApiCallEventBridgedescribeRulea8eb3a266cbe0c5e5c93e2b16e2c7658/AssertionResults",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnOutput",
+                          "version": "2.87.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/integ-tests-alpha.AwsApiCall",
+                      "version": "2.87.0-alpha.0"
+                    }
+                  },
+                  "BootstrapVersion": {
+                    "id": "BootstrapVersion",
+                    "path": "MyTestCase/DefaultTest/DeployAssert/BootstrapVersion",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnParameter",
+                      "version": "2.87.0"
+                    }
+                  },
+                  "CheckBootstrapVersion": {
+                    "id": "CheckBootstrapVersion",
+                    "path": "MyTestCase/DefaultTest/DeployAssert/CheckBootstrapVersion",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnRule",
+                      "version": "2.87.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Stack",
+                  "version": "2.87.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/integ-tests-alpha.IntegTestCase",
+              "version": "2.87.0-alpha.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/integ-tests-alpha.IntegTest",
+          "version": "2.87.0-alpha.0"
+        }
+      },
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.0.5"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.87.0"
+    }
+  }
+}

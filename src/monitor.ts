@@ -14,6 +14,8 @@ export class FsxLifecycleStatusMonitor extends Construct {
   fn: lambda.Function;
   topic: sns.Topic;
   policy: iam.Policy;
+  rule: events.Rule;
+
   /**
    * Creates an instance of FsxLifecycleStatusMonitor.
    * @param {Construct} scope - parent construct
@@ -27,8 +29,9 @@ export class FsxLifecycleStatusMonitor extends Construct {
     this.fn = this.createLambdaFunction();
     this.fn.role?.attachInlinePolicy(this.policy);
 
-    new events.Rule(this, 'rule', {
+    this.rule = new events.Rule(this, 'rule', {
       ruleName: 'fsx-health-trigger',
+      description: 'Trigger the FSx health check every 10 minutes',
       schedule: events.Schedule.cron({
         minute: '0/10',
         hour: '*',
@@ -36,7 +39,7 @@ export class FsxLifecycleStatusMonitor extends Construct {
         month: '*',
         year: '*',
       }),
-      targets: [new targets.SnsTopic(this.topic)],
+      targets: [new targets.LambdaFunction(this.fn)],
     });
   }
 
