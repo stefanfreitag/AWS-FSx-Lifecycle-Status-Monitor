@@ -8,7 +8,7 @@ class StackUnderTest extends cdk.Stack {
 
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-    this.monitor = new FsxLifecycleStatusMonitor(this, "monitor");
+    this.monitor = new FsxLifecycleStatusMonitor(this, "monitor",{});
   }
 }
 
@@ -44,7 +44,7 @@ integ.assertions
   })
   .expect(
     ExpectedResult.objectLike({
-      Description: "Trigger the FSx health check every 10 minutes",
+      Description: "Trigger the FSx health check based on the underlying cron expression",
         ScheduleExpression: "cron(0/10 * * * ? *)",
       Name: 'fsx-health-trigger',
       State: 'ENABLED',

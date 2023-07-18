@@ -35,13 +35,14 @@ yarn integ-runner --directory ./integ-tests  --update-on-failed --parallel-regio
 ```typescript
 import { FsxLifecycleStatusMonitor } from 'aws_fsx_lifecycle_status_monitor'
 
-new FsxLifecycleStatusMonitor(scope: Construct, id: string)
+new FsxLifecycleStatusMonitor(scope: Construct, id: string, props: FsxLifecycleStatusMonitorProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | - parent construct. |
 | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.id">id</a></code> | <code>string</code> | - unique id. |
+| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props">props</a></code> | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a></code> | *No description.* |
 
 ---
 
@@ -58,6 +59,12 @@ parent construct.
 - *Type:* string
 
 unique id.
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a>
 
 ---
 
@@ -190,6 +197,63 @@ public readonly topic: Topic;
 
 ---
 
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE">DEFAULT_SCHEDULE</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
+
+---
+
+##### `DEFAULT_SCHEDULE`<sup>Required</sup> <a name="DEFAULT_SCHEDULE" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE"></a>
+
+```typescript
+public readonly DEFAULT_SCHEDULE: Schedule;
+```
+
+- *Type:* aws-cdk-lib.aws_events.Schedule
+
+---
+
+## Structs <a name="Structs" id="Structs"></a>
+
+### FsxLifecycleStatusMonitorProps <a name="FsxLifecycleStatusMonitorProps" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps"></a>
+
+Properties for the FSx Lifecycle Status Monitor.
+
+#### Initializer <a name="Initializer" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.Initializer"></a>
+
+```typescript
+import { FsxLifecycleStatusMonitorProps } from 'aws_fsx_lifecycle_status_monitor'
+
+const fsxLifecycleStatusMonitorProps: FsxLifecycleStatusMonitorProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | The schedule for the FSx Lifecycle Status Monitor. |
+
+---
+
+##### `schedule`<sup>Optional</sup> <a name="schedule" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.property.schedule"></a>
+
+```typescript
+public readonly schedule: Schedule;
+```
+
+- *Type:* aws-cdk-lib.aws_events.Schedule
+
+The schedule for the FSx Lifecycle Status Monitor.
+
+---
+
+*Example*
+
+```typescript
+"events.Schedule.cron({ minute: '0/10', hour: '*', day: '*', month: '*', year: '*' })"
+```
 
 
 

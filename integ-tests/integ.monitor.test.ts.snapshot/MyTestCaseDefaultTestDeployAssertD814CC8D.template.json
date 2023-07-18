@@ -18,7 +18,7 @@
      }
     },
     "flattenResponse": "false",
-    "salt": "1689612365941"
+    "salt": "1689682417284"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"
@@ -115,14 +115,14 @@
     },
     "service": "EventBridge",
     "api": "describeRule",
-    "expected": "{\"$ObjectLike\":{\"Description\":\"Trigger the FSx health check every 10 minutes\",\"ScheduleExpression\":\"cron(0/10 * * * ? *)\",\"Name\":\"fsx-health-trigger\",\"State\":\"ENABLED\"}}",
+    "expected": "{\"$ObjectLike\":{\"Description\":\"Trigger the FSx health check based on the underlying cron expression\",\"ScheduleExpression\":\"cron(0/10 * * * ? *)\",\"Name\":\"fsx-health-trigger\",\"State\":\"ENABLED\"}}",
     "parameters": {
      "Name": {
       "Fn::ImportValue": "monitor-stack:ExportsOutputRefmonitorrule99C4CAB40309C047"
      }
     },
     "flattenResponse": "false",
-    "salt": "1689612365941"
+    "salt": "1689682417285"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete"

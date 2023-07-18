@@ -302,7 +302,7 @@
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Events::Rule",
                       "aws:cdk:cloudformation:props": {
-                        "description": "Trigger the FSx health check every 10 minutes",
+                        "description": "Trigger the FSx health check based on the underlying cron expression",
                         "name": "fsx-health-trigger",
                         "scheduleExpression": "cron(0/10 * * * ? *)",
                         "state": "ENABLED",
