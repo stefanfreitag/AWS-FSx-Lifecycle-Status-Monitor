@@ -9,12 +9,23 @@ import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as sns from 'aws-cdk-lib/aws-sns';
 
 import { Construct } from 'constructs';
+import { FsxLifecycleStatusMonitorProps } from './monitorProps';
 
 export class FsxLifecycleStatusMonitor extends Construct {
+
+  public static readonly DEFAULT_SCHEDULE = events.Schedule.cron({
+    minute: '0/10',
+    hour: '*',
+    day: '*',
+    month: '*',
+    year: '*',
+  });
+
   fn: lambda.Function;
   topic: sns.Topic;
   policy: iam.Policy;
   rule: events.Rule;
+
 
   /**
    * Creates an instance of FsxLifecycleStatusMonitor.
@@ -22,7 +33,7 @@ export class FsxLifecycleStatusMonitor extends Construct {
    * @param {string} id - unique id
    * @memberof FsxLifecycleStatusMonitor - class instance
    */
-  constructor(scope: Construct, id: string) {
+  constructor(scope: Construct, id: string, props: FsxLifecycleStatusMonitorProps) {
     super(scope, id);
     this.topic = this.createSNSTopic();
     this.policy = this.createIamPolicy();
@@ -31,14 +42,8 @@ export class FsxLifecycleStatusMonitor extends Construct {
 
     this.rule = new events.Rule(this, 'rule', {
       ruleName: 'fsx-health-trigger',
-      description: 'Trigger the FSx health check every 10 minutes',
-      schedule: events.Schedule.cron({
-        minute: '0/10',
-        hour: '*',
-        day: '*',
-        month: '*',
-        year: '*',
-      }),
+      description: 'Trigger the FSx health check based on the underlying cron expression',
+      schedule: props.schedule ? props.schedule : FsxLifecycleStatusMonitor.DEFAULT_SCHEDULE,
       targets: [new targets.LambdaFunction(this.fn)],
     });
   }

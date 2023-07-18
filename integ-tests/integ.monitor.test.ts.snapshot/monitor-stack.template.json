@@ -165,7 +165,7 @@
   "monitorrule99C4CAB4": {
    "Type": "AWS::Events::Rule",
    "Properties": {
-    "Description": "Trigger the FSx health check every 10 minutes",
+    "Description": "Trigger the FSx health check based on the underlying cron expression",
     "Name": "fsx-health-trigger",
     "ScheduleExpression": "cron(0/10 * * * ? *)",
     "State": "ENABLED",
