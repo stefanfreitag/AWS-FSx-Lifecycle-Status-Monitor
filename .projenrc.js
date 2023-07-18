@@ -31,6 +31,10 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
   stability: Stability.EXPERIMENTAL,
+  publishToPypi: {
+    module: 'aws_fsx_lifecycle_status_monitor',
+    distName: 'aws-fsx-lifecycle-status-monitor',
+  },
 });
 
 const commonExcludes = ['.history/', '.venv', '.idea'];
