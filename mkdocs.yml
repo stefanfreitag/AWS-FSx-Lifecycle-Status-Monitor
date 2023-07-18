@@ -1,0 +1,10 @@
+site_name: Test docs
+site_description: 'A docs test'
+site_author: 'Stefan Freitag'
+docs_dir: docs/
+repo_name: 'stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor'
+repo_url: 'https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor.git'
+nav:
+    - Home: index.md
+theme:
+  name: 'material'
