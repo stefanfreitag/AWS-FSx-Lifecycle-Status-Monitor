@@ -1,10 +1,15 @@
-site_name: Test docs
-site_description: 'A docs test'
+site_name: AWS FSx Lifecycle Status Monitor
+site_description: 'Documentation for the AWS FSx Lifecycle Status Monitor'
 site_author: 'Stefan Freitag'
 docs_dir: docs/
 repo_name: 'stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor'
-repo_url: 'https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor.git'
+repo_url: 'https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor'
+edit_uri: blob/main/docs/
 nav:
     - Home: index.md
+    - Architecture: architecture.md
+    - Links: links.md
 theme:
   name: 'material'
+  palette:
+    scheme: default
