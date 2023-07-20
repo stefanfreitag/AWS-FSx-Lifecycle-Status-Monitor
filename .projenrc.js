@@ -5,10 +5,12 @@ const { UpgradeDependenciesSchedule } = require('projen/lib/javascript');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Stefan Freitag',
   authorAddress: 'stefan.freitag@udo.edu',
+  authorOrganization: false,
+  homepage: 'https://stefanfreitag.github.io/AWS-FSx-Lifecycle-Status-Monitor',
   cdkVersion: '2.87.0',
   defaultReleaseBranch: 'main',
   name: 'aws_fsx_lifecycle_status_monitor',
-  repositoryUrl: 'https://github.com/stefan.freitag/aws_fsx_lifecycle_status_monitor.git',
+  repositoryUrl: 'https://github.com/stefan.freitag/aws_fsx_lifecycle_status_monitor',
   keywords: ['aws', 'fsx', 'lifecycle', 'monitor'],
   tsconfigDev: {
     compilerOptions: {
