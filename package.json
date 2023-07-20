@@ -1,5 +1,5 @@
 {
-  "name": "aws_fsx_lifecycle_status_monitor",
+  "name": "aws-fsx-lifecycle-status-monitor",
   "repository": {
     "type": "git",
     "url": "https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor"

@@ -9,7 +9,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   homepage: 'https://stefanfreitag.github.io/AWS-FSx-Lifecycle-Status-Monitor',
   cdkVersion: '2.87.0',
   defaultReleaseBranch: 'main',
-  name: 'aws_fsx_lifecycle_status_monitor',
+  name: 'aws-fsx-lifecycle-status-monitor',
   repositoryUrl: 'https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor',
   keywords: ['aws', 'fsx', 'lifecycle', 'monitor'],
   tsconfigDev: {

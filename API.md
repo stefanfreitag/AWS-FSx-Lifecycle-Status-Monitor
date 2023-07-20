@@ -23,25 +23,25 @@ The documentation is available [here](https://stefanfreitag.github.io/AWS-FSx-Li
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### FsxLifecycleStatusMonitor <a name="FsxLifecycleStatusMonitor" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor"></a>
+### FsxLifecycleStatusMonitor <a name="FsxLifecycleStatusMonitor" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor"></a>
 
-#### Initializers <a name="Initializers" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer"></a>
+#### Initializers <a name="Initializers" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer"></a>
 
 ```typescript
-import { FsxLifecycleStatusMonitor } from 'aws_fsx_lifecycle_status_monitor'
+import { FsxLifecycleStatusMonitor } from 'aws-fsx-lifecycle-status-monitor'
 
 new FsxLifecycleStatusMonitor(scope: Construct, id: string, props: FsxLifecycleStatusMonitorProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | - parent construct. |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.id">id</a></code> | <code>string</code> | - unique id. |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props">props</a></code> | <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a></code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | - parent construct. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.id">id</a></code> | <code>string</code> | - unique id. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props">props</a></code> | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
@@ -49,7 +49,7 @@ parent construct.
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.id"></a>
 
 - *Type:* string
 
@@ -57,9 +57,9 @@ unique id.
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a>
+- *Type:* <a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps">FsxLifecycleStatusMonitorProps</a>
 
 ---
 
@@ -67,14 +67,14 @@ unique id.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.toString">toString</a></code> | Returns a string representation of this construct. |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createIamPolicy">createIamPolicy</a></code> | *No description.* |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createLambdaFunction">createLambdaFunction</a></code> | *No description.* |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createSNSTopic">createSNSTopic</a></code> | Topic linked to the Lambda function. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createIamPolicy">createIamPolicy</a></code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createLambdaFunction">createLambdaFunction</a></code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createSNSTopic">createSNSTopic</a></code> | Topic linked to the Lambda function. |
 
 ---
 
-##### `toString` <a name="toString" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.toString"></a>
+##### `toString` <a name="toString" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.toString"></a>
 
 ```typescript
 public toString(): string
@@ -82,19 +82,19 @@ public toString(): string
 
 Returns a string representation of this construct.
 
-##### `createIamPolicy` <a name="createIamPolicy" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createIamPolicy"></a>
+##### `createIamPolicy` <a name="createIamPolicy" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createIamPolicy"></a>
 
 ```typescript
 public createIamPolicy(): Policy
 ```
 
-##### `createLambdaFunction` <a name="createLambdaFunction" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createLambdaFunction"></a>
+##### `createLambdaFunction` <a name="createLambdaFunction" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createLambdaFunction"></a>
 
 ```typescript
 public createLambdaFunction(): Function
 ```
 
-##### `createSNSTopic` <a name="createSNSTopic" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.createSNSTopic"></a>
+##### `createSNSTopic` <a name="createSNSTopic" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createSNSTopic"></a>
 
 ```typescript
 public createSNSTopic(): Topic
@@ -106,21 +106,21 @@ Topic linked to the Lambda function.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.isConstruct"></a>
 
 ```typescript
-import { FsxLifecycleStatusMonitor } from 'aws_fsx_lifecycle_status_monitor'
+import { FsxLifecycleStatusMonitor } from 'aws-fsx-lifecycle-status-monitor'
 
 FsxLifecycleStatusMonitor.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
 
-###### `x`<sup>Required</sup> <a name="x" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -132,15 +132,15 @@ Any object.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.fn">fn</a></code> | <code>aws-cdk-lib.aws_lambda.Function</code> | *No description.* |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | *No description.* |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | *No description.* |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.topic">topic</a></code> | <code>aws-cdk-lib.aws_sns.Topic</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.fn">fn</a></code> | <code>aws-cdk-lib.aws_lambda.Function</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.topic">topic</a></code> | <code>aws-cdk-lib.aws_sns.Topic</code> | *No description.* |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -152,7 +152,7 @@ The tree node.
 
 ---
 
-##### `fn`<sup>Required</sup> <a name="fn" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.fn"></a>
+##### `fn`<sup>Required</sup> <a name="fn" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.fn"></a>
 
 ```typescript
 public readonly fn: Function;
@@ -162,7 +162,7 @@ public readonly fn: Function;
 
 ---
 
-##### `policy`<sup>Required</sup> <a name="policy" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.policy"></a>
+##### `policy`<sup>Required</sup> <a name="policy" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.policy"></a>
 
 ```typescript
 public readonly policy: Policy;
@@ -172,7 +172,7 @@ public readonly policy: Policy;
 
 ---
 
-##### `rule`<sup>Required</sup> <a name="rule" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.rule"></a>
+##### `rule`<sup>Required</sup> <a name="rule" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.rule"></a>
 
 ```typescript
 public readonly rule: Rule;
@@ -182,7 +182,7 @@ public readonly rule: Rule;
 
 ---
 
-##### `topic`<sup>Required</sup> <a name="topic" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.topic"></a>
+##### `topic`<sup>Required</sup> <a name="topic" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.topic"></a>
 
 ```typescript
 public readonly topic: Topic;
@@ -196,11 +196,11 @@ public readonly topic: Topic;
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE">DEFAULT_SCHEDULE</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE">DEFAULT_SCHEDULE</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
 
 ---
 
-##### `DEFAULT_SCHEDULE`<sup>Required</sup> <a name="DEFAULT_SCHEDULE" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE"></a>
+##### `DEFAULT_SCHEDULE`<sup>Required</sup> <a name="DEFAULT_SCHEDULE" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE"></a>
 
 ```typescript
 public readonly DEFAULT_SCHEDULE: Schedule;
@@ -212,14 +212,14 @@ public readonly DEFAULT_SCHEDULE: Schedule;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### FsxLifecycleStatusMonitorProps <a name="FsxLifecycleStatusMonitorProps" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps"></a>
+### FsxLifecycleStatusMonitorProps <a name="FsxLifecycleStatusMonitorProps" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps"></a>
 
 Properties for the FSx Lifecycle Status Monitor.
 
-#### Initializer <a name="Initializer" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.Initializer"></a>
 
 ```typescript
-import { FsxLifecycleStatusMonitorProps } from 'aws_fsx_lifecycle_status_monitor'
+import { FsxLifecycleStatusMonitorProps } from 'aws-fsx-lifecycle-status-monitor'
 
 const fsxLifecycleStatusMonitorProps: FsxLifecycleStatusMonitorProps = { ... }
 ```
@@ -228,11 +228,11 @@ const fsxLifecycleStatusMonitorProps: FsxLifecycleStatusMonitorProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | The schedule for the FSx Lifecycle Status Monitor. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | The schedule for the FSx Lifecycle Status Monitor. |
 
 ---
 
-##### `schedule`<sup>Optional</sup> <a name="schedule" id="aws_fsx_lifecycle_status_monitor.FsxLifecycleStatusMonitorProps.property.schedule"></a>
+##### `schedule`<sup>Optional</sup> <a name="schedule" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.schedule"></a>
 
 ```typescript
 public readonly schedule: Schedule;
