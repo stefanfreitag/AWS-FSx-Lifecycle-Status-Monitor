@@ -2,7 +2,7 @@
   "name": "aws_fsx_lifecycle_status_monitor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stefan.freitag/aws_fsx_lifecycle_status_monitor"
+    "url": "https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor"
   },
   "scripts": {
     "build": "npx projen build",
