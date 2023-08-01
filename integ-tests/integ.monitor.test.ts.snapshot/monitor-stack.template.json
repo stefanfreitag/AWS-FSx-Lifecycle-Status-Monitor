@@ -35,35 +35,25 @@
      "Statement": [
       {
        "Action": [
+        "fsx:DescribeFileSystems",
+        "sns:Publish"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
         "logs:CreateLogGroup",
         "logs:CreateLogStream",
         "logs:PutLogEvents"
        ],
        "Effect": "Allow",
        "Resource": {
-        "Fn::Join": [
-         "",
-         [
-          "arn:aws:logs:",
-          {
-           "Ref": "AWS::Region"
-          },
-          ":",
-          {
-           "Ref": "AWS::AccountId"
-          },
-          ":log-group:/aws/lambda/*"
-         ]
+        "Fn::GetAtt": [
+         "monitorfsxhealthloggroup9F4B8215",
+         "Arn"
         ]
        }
-      },
-      {
-       "Action": [
-        "fsx:DescribeFileSystems",
-        "sns:Publish"
-       ],
-       "Effect": "Allow",
-       "Resource": "*"
       }
      ],
      "Version": "2012-10-17"
@@ -122,21 +112,15 @@
   "monitorfsxlifecyclemonitor692E6494": {
    "Type": "AWS::Lambda::Function",
    "Properties": {
+    "Architectures": [
+     "x86_64"
+    ],
     "Code": {
      "S3Bucket": {
       "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
      },
-     "S3Key": "d1c924824b9a5e2d92acd88a4313cfa2616b7625231e14409f8a5cae6be11742.zip"
+     "S3Key": "f98d2a893ca675e9913c5c54241a23418c46c083ddf445621500691e1b3c0790.zip"
     },
-    "Role": {
-     "Fn::GetAtt": [
-      "monitorfsxlifecyclemonitorServiceRole29219093",
-      "Arn"
-     ]
-    },
-    "Architectures": [
-     "x86_64"
-    ],
     "Environment": {
      "Variables": {
       "LambdaSNSTopic": {
@@ -156,11 +140,28 @@
       ]
      }
     ],
+    "Role": {
+     "Fn::GetAtt": [
+      "monitorfsxlifecyclemonitorServiceRole29219093",
+      "Arn"
+     ]
+    },
     "Runtime": "python3.10"
    },
    "DependsOn": [
     "monitorfsxlifecyclemonitorServiceRole29219093"
    ]
+  },
+  "monitorfsxhealthloggroup9F4B8215": {
+   "Type": "AWS::Logs::LogGroup",
+   "Properties": {
+    "LogGroupName": {
+     "Ref": "monitorfsxlifecyclemonitor692E6494"
+    },
+    "RetentionInDays": 365
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain"
   },
   "monitorrule99C4CAB4": {
    "Type": "AWS::Events::Rule",
@@ -204,7 +205,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02PzarCMBCFn8V9OloFdXsV7u6CVPcS01HGtpPSSRQJeXeTWuSuznfmDPOzhO0GFjP9lMLUTdHSBcLRadOoCsX6waBK2TkIC4ST7cmo/ZVHiIp0B+FgWzKvXJ2osi1mmzWqVneXWkP49WwcWc7Jfz7g0JFIclHJ6qxF0An8ZEkedt406HZaUOEDOUWh8tP8pDGqsTWdfCO+5fKf7vsJvy8k3luuyY1r2NYId5k/yi2UayhndyEqBs+OOoTqo2+DDY+NGQEAAA=="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QTU/DMAyGfwt312xwAI5sElxAmgr3KUtN5TWNqzoZQlH+O0kpiNP7vLb8eYMPG9xcmU9tbDc0jk+Y3oKxA7SkEmdLUHLHpF4xvcvEFvYffoEMbEZMB3Fsv2p0pVYcVVs1gzPjqTOYnqK3gcXXzH8+0DyyanEZ9PZoVCkoPlYpHnfRDhR2Rgmc9GWHF+mfZ4lTrf3lDHQhX8pSG9fZRXOGpU05p2ff1/CrmaYV/84rvBffcVhW8NIRnvX6sr3H7V35zFmZmzn6wCNh+6Pf8py3HDUBAAA="
    },
    "Condition": "CDKMetadataAvailable"
   }

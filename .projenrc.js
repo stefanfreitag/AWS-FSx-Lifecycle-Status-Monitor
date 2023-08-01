@@ -7,7 +7,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'stefan.freitag@udo.edu',
   authorOrganization: false,
   homepage: 'https://stefanfreitag.github.io/AWS-FSx-Lifecycle-Status-Monitor',
-  cdkVersion: '2.87.0',
+  cdkVersion: '2.91.0',
   defaultReleaseBranch: 'main',
   name: 'aws-fsx-lifecycle-status-monitor',
   repositoryUrl: 'https://github.com/stefanfreitag/AWS-FSx-Lifecycle-Status-Monitor',
@@ -23,8 +23,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
   devDeps: [
-    '@aws-cdk/integ-tests-alpha@2.87.0-alpha.0',
-    '@aws-cdk/integ-runner@2.87.0-alpha.0',
+    '@aws-cdk/integ-tests-alpha@2.91.0-alpha.0',
+    '@aws-cdk/integ-runner@2.91.0-alpha.0',
     'ts-node',
   ],
   depsUpgradeOptions: {
