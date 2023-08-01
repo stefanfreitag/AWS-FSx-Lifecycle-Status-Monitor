@@ -133,10 +133,11 @@ Any object.
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.fn">fn</a></code> | <code>aws-cdk-lib.aws_lambda.Function</code> | *No description.* |
-| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | *No description.* |
-| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | *No description.* |
-| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.topic">topic</a></code> | <code>aws-cdk-lib.aws_sns.Topic</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.fn">fn</a></code> | <code>aws-cdk-lib.aws_lambda.Function</code> | The Lambda function that will be triggered by the CloudWatch event. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.logGroup">logGroup</a></code> | <code>aws-cdk-lib.aws_logs.LogGroup</code> | Log group for the Lambda function. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.policy">policy</a></code> | <code>aws-cdk-lib.aws_iam.Policy</code> | The IAM policy that will be attached to the Lambda function. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.rule">rule</a></code> | <code>aws-cdk-lib.aws_events.Rule</code> | The CloudWatch event rule that will trigger the Lambda function. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.topic">topic</a></code> | <code>aws-cdk-lib.aws_sns.Topic</code> | Topic linked to the Lambda function. |
 
 ---
 
@@ -160,6 +161,20 @@ public readonly fn: Function;
 
 - *Type:* aws-cdk-lib.aws_lambda.Function
 
+The Lambda function that will be triggered by the CloudWatch event.
+
+---
+
+##### `logGroup`<sup>Required</sup> <a name="logGroup" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.logGroup"></a>
+
+```typescript
+public readonly logGroup: LogGroup;
+```
+
+- *Type:* aws-cdk-lib.aws_logs.LogGroup
+
+Log group for the Lambda function.
+
 ---
 
 ##### `policy`<sup>Required</sup> <a name="policy" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.policy"></a>
@@ -169,6 +184,8 @@ public readonly policy: Policy;
 ```
 
 - *Type:* aws-cdk-lib.aws_iam.Policy
+
+The IAM policy that will be attached to the Lambda function.
 
 ---
 
@@ -180,6 +197,8 @@ public readonly rule: Rule;
 
 - *Type:* aws-cdk-lib.aws_events.Rule
 
+The CloudWatch event rule that will trigger the Lambda function.
+
 ---
 
 ##### `topic`<sup>Required</sup> <a name="topic" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.topic"></a>
@@ -190,13 +209,28 @@ public readonly topic: Topic;
 
 - *Type:* aws-cdk-lib.aws_sns.Topic
 
+Topic linked to the Lambda function.
+
 ---
 
 #### Constants <a name="Constants" id="Constants"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE">DEFAULT_SCHEDULE</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | *No description.* |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_LOG_RETENTION_PERIOD">DEFAULT_LOG_RETENTION_PERIOD</a></code> | <code>aws-cdk-lib.aws_logs.RetentionDays</code> | Default log retention for the FSx Lifecycle Status Monitor. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_SCHEDULE">DEFAULT_SCHEDULE</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | Default schedule for the FSx Lifecycle Status Monitor. |
+
+---
+
+##### `DEFAULT_LOG_RETENTION_PERIOD`<sup>Required</sup> <a name="DEFAULT_LOG_RETENTION_PERIOD" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.property.DEFAULT_LOG_RETENTION_PERIOD"></a>
+
+```typescript
+public readonly DEFAULT_LOG_RETENTION_PERIOD: RetentionDays;
+```
+
+- *Type:* aws-cdk-lib.aws_logs.RetentionDays
+
+Default log retention for the FSx Lifecycle Status Monitor.
 
 ---
 
@@ -208,13 +242,15 @@ public readonly DEFAULT_SCHEDULE: Schedule;
 
 - *Type:* aws-cdk-lib.aws_events.Schedule
 
+Default schedule for the FSx Lifecycle Status Monitor.
+
 ---
 
 ## Structs <a name="Structs" id="Structs"></a>
 
 ### FsxLifecycleStatusMonitorProps <a name="FsxLifecycleStatusMonitorProps" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps"></a>
 
-Properties for the FSx Lifecycle Status Monitor.
+Configuration properties for the FSx Lifecycle Status Monitor.
 
 #### Initializer <a name="Initializer" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.Initializer"></a>
 
@@ -228,9 +264,32 @@ const fsxLifecycleStatusMonitorProps: FsxLifecycleStatusMonitorProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.logRetentionDays">logRetentionDays</a></code> | <code>aws-cdk-lib.aws_logs.RetentionDays</code> | The log retention days for the FSx Lifecycle Status Monitor. |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.schedule">schedule</a></code> | <code>aws-cdk-lib.aws_events.Schedule</code> | The schedule for the FSx Lifecycle Status Monitor. |
 
 ---
+
+##### `logRetentionDays`<sup>Optional</sup> <a name="logRetentionDays" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.logRetentionDays"></a>
+
+```typescript
+public readonly logRetentionDays: RetentionDays;
+```
+
+- *Type:* aws-cdk-lib.aws_logs.RetentionDays
+- *Default:* logs.RetentionDays.ONE_YEAR
+
+The log retention days for the FSx Lifecycle Status Monitor.
+
+---
+
+*Example*
+
+```typescript
+this.monitor = new FsxLifecycleStatusMonitor(this, "monitor",{
+  logRetentionDays: logs.RetentionDays.ONE_MONTH
+});
+```
+
 
 ##### `schedule`<sup>Optional</sup> <a name="schedule" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitorProps.property.schedule"></a>
 
@@ -239,6 +298,7 @@ public readonly schedule: Schedule;
 ```
 
 - *Type:* aws-cdk-lib.aws_events.Schedule
+- *Default:* "events.Schedule.cron({ minute: '0/10', hour: '*', day: '*', month: '*', year: '*' })"
 
 The schedule for the FSx Lifecycle Status Monitor.
 
@@ -247,7 +307,10 @@ The schedule for the FSx Lifecycle Status Monitor.
 *Example*
 
 ```typescript
-"events.Schedule.cron({ minute: '0/10', hour: '*', day: '*', month: '*', year: '*' })"
+this.monitor = new FsxLifecycleStatusMonitor(this, "monitor",{
+  logRetentionDays: logs.RetentionDays.ONE_MONTH,
+  schedule: events.Schedule.rate(cdk.Duration.hours(1)),
+});
 ```
 
 
