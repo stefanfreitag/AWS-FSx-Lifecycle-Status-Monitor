@@ -37,7 +37,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     module: 'aws_fsx_lifecycle_status_monitor',
     distName: 'aws-fsx-lifecycle-status-monitor',
   },
-  jsiiVersion:
 });
 
 const commonExcludes = ['.history/', '.venv', '.idea'];
