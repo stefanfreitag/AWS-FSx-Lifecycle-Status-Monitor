@@ -33,6 +33,15 @@ const project = new awscdk.AwsCdkConstructLibrary({
     },
   },
   stability: Stability.EXPERIMENTAL,
+  stale: true,
+  staleOptions: {
+    issues: {
+      close: true,
+    },
+    pullRequests: {
+      close: true,
+    },
+  },
   publishToPypi: {
     module: 'aws_fsx_lifecycle_status_monitor',
     distName: 'aws-fsx-lifecycle-status-monitor',
