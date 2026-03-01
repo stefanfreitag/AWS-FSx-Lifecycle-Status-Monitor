@@ -47,6 +47,7 @@ unique id.
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createIamPolicy">createIamPolicy</a></code> | *No description.* |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createLambdaFunction">createLambdaFunction</a></code> | *No description.* |
 | <code><a href="#aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createSNSTopic">createSNSTopic</a></code> | Topic linked to the Lambda function. |
@@ -60,6 +61,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `createIamPolicy` <a name="createIamPolicy" id="aws-fsx-lifecycle-status-monitor.FsxLifecycleStatusMonitor.createIamPolicy"></a>
 
